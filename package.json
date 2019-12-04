@@ -1,0 +1,29 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as a speed contest, interview prep, company training, university coursework, practice problems, or to challenge each other.",
+  "dependencies": {
+    "@types/express": "^4.17.2",
+    "express": "^4.17.1",
+    "line-reader": "^0.4.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "scripts": {
+    "dev": "nodemon app/api/api.ts",
+    "start": "tsc && node bin/api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaywaa/adventofcode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaywaa/adventofcode/issues"
+  },
+  "homepage": "https://github.com/Jaywaa/adventofcode#readme"
+}
