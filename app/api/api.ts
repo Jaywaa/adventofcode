@@ -6,6 +6,7 @@ import solutionProvider from './providers/solutionProvider';
 const app: Application = express();
 
 app.use(express.json());
+app.use(express.static(__dirname + '/../'));
 
 app.get('/', (request: Request, response: Response): void => {
     const view = getHtmlView("index");
