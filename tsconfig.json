@@ -8,5 +8,6 @@
     "rootDir": "./app",
     "strict": true,                           /* Enable all strict type-checking options. */
     "esModuleInterop": true
+    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   }
 }
