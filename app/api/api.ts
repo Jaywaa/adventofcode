@@ -1,6 +1,7 @@
 import express, {Application, Request, Response } from 'express';
-import { getHtmlView } from './providers/fileProvider';
-import { ProblemRequestValidator as requestValidator } from './validators/problemRequestValidator';
+import { getHtmlView } from '@providers/fileProvider';
+import { ProblemRequestValidator as requestValidator } from '@validators/problemRequestValidator';
+import part1 from '@solutions/day_1/part_1';
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ app.get('/problems/:day-:part', (request: Request, response: Response) => {
     if (!validationResponse.isValid)
         throw new Error(`BadRequest: \n\t- ${validationResponse.messages.join('\n\t- ')}`);
     
-    response.json({message: "ok"});
+    response.json({message: part1()});
 });
 
 const PORT: any = process.env.PORT || 3001;

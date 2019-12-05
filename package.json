@@ -10,6 +10,7 @@
     "typescript": "^3.7.3"
   },
   "devDependencies": {
+    "@types/line-reader": "0.0.28",
     "nodemon": "^2.0.1"
   },
   "scripts": {

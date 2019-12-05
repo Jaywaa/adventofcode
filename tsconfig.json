@@ -5,9 +5,15 @@
     "allowJs": true,
     "sourceMap": true,                     /* Generates corresponding '.map' file. */
     "outDir": "./bin",                        /* Redirect output structure to the directory. */
-    "rootDir": "./app",
+    "rootDir": "./",
     "strict": true,                           /* Enable all strict type-checking options. */
-    "esModuleInterop": true
-    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
+    "baseUrl": "./app",
+    "paths": {
+      "@providers/*": ["api/providers/*"],
+      "@solutions/*": ["solutions/*"],
+      "@validators/*": ["api/validators/*"]
+  }
   }
 }
