@@ -1,3 +1,30 @@
+body,html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+}
+
+.background {
+    /*color: #639cd9;*/
+    background-color: #c5c5c5;
+    font-family: sans-serif;
+    height: 100%;
+    /*background-image: url(https://wallpaperaccess.com/download/space-47119);*/
+
+}
+
+
+
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    height: 100%;
+    box-shadow: 0 0 12px 0px black;
+}
+
 .part-container {
     display: flex;
     flex-direction: column;

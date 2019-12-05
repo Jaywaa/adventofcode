@@ -2,11 +2,13 @@ import express, { Application, Request, Response } from 'express';
 import { getHtmlView } from './providers/fileProvider';
 import { ProblemRequestValidator as requestValidator } from './validators/problemRequestValidator';
 import solutionProvider from './providers/solutionProvider';
+import favicon from 'serve-favicon';
 
 const app: Application = express();
 
 app.use(express.json());
 app.use(express.static(__dirname + '/../'));
+app.use(favicon(__dirname + '/../favicon.png'));
 
 app.get('/', (request: Request, response: Response): void => {
     const view = getHtmlView("index");
