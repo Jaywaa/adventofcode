@@ -9,7 +9,7 @@ export class ProblemRequestValidator {
         const { day, part } = params;
 
         const isDayValid = /^day[0-9]*$/.test(day || "");
-        const isPartValid = /^part[0-9]*$/.test(part || "");
+        const isPartValid = /^part[0-9]+([and]*[0-9])*$/.test(part || "");
 
         const validationMessages: string[] = [];
 

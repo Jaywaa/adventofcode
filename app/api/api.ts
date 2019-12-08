@@ -38,4 +38,4 @@ app.get('/solutions/:day/:part', async (request: Request, response: Response) =>
 
 const PORT: any = process.env.PORT || 3001;
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`));

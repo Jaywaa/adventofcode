@@ -7,7 +7,7 @@
       {
         "type": "node",
         "request": "launch",
-        "name": "Debug",
+        "name": "Launch File",
         "program": "${workspaceFolder}/bin/${relativeFileDirname}/${fileBasenameNoExtension}.js",
         "preLaunchTask": "tsc: build - tsconfig.json"
       }
