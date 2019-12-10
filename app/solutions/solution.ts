@@ -3,7 +3,7 @@ import lineReader from 'line-reader';
 
 export default abstract class Solution {
     protected abstract dayNumber: number;
-    abstract computeAsync: () => any;
+    public abstract async computeAsync(): Promise<any>;
 
     protected async readLinesAsync(fileName: string): Promise<string[]> {
         const file = `app/solutions/day${this.dayNumber}/${fileName}`;

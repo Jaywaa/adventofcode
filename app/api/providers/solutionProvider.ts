@@ -5,6 +5,7 @@ import day2part2 from '../../solutions/day2/part2';
 import day3part1and2 from '../../solutions/day3/part1&2';
 import day4part1 from '../../solutions/day4/part1';
 import day4part2 from '../../solutions/day4/part2';
+import day5part1 from '../../solutions/day5/part1';
 
 const solutions: { [key: string]: () => Promise<any> } = {
     day1part1,
@@ -13,7 +14,8 @@ const solutions: { [key: string]: () => Promise<any> } = {
     day2part2,
     day3part1and2,
     day4part1,
-    day4part2
+    day4part2,
+    day5part1
 };
 
 export default {

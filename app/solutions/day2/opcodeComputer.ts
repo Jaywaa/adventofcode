@@ -5,7 +5,8 @@ export default class OpcodeComputer {
     
     private readonly _operations : { [key: number]: { name: string, compute: (...operands: any[]) => any} } = {
         1: { name: "add", compute: this.add },
-        2: { name: "multiply", compute: this.multiply },        
+        2: { name: "multiply", compute: this.multiply },
+        2: { name: "multiply", compute: this.multiply },
     };
 
     private readonly _haltCode = 99;
@@ -16,7 +17,10 @@ export default class OpcodeComputer {
             const opcode = opcodes[i]; 
 
             if (opcode == this._haltCode)
+            {
+                console.log("Program halting.")
                 return opcodes;          
+            }
 
             if (!(opcode in this._operations))
                 throw `Unknown_Opcode_Exception: Unable to handle opcode ${opcode}`;
