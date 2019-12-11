@@ -11,10 +11,12 @@ class Day5Part1 extends Solution {
         const lines = getFileLines("app/solutions/day5/input");
 
         const opcodes = lines[0].split(',').map(x => parseInt(x));
+        
         var opcodeComputer = new OpcodeComputer();
 
+        const resultCodes = await opcodeComputer.execute(opcodes); 
 
-        return "";
+        return resultCodes.join(',');
     }
 }
 

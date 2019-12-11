@@ -1,12 +1,19 @@
-import lineReader from 'line-reader';
-import fs from 'fs';
+import readline from 'readline-sync';
+
+interface IOperation {
+    code: number;
+    name: string;
+    compute: (opcodes: number[], ...parameters: number[]) => Promise<void>;
+    numParams: number;
+}
 
 export default class OpcodeComputer {
     
-    private readonly _operations : { [key: number]: { name: string, compute: (...operands: any[]) => any} } = {
-        1: { name: "add", compute: this.add },
-        2: { name: "multiply", compute: this.multiply },
-        2: { name: "multiply", compute: this.multiply },
+    private readonly _operations : { [key: number]: IOperation } = {
+        1: { code: 1, name: "add", compute: this.add, numParams: 3 },
+        2: { code: 2, name: "multiply", compute: this.multiply, numParams: 3 },
+        3: { code: 3, name: "readInt", compute: this.readInt, numParams: 1 },
+        4: { code: 4, name: "output", compute: this.output, numParams: 0 },
     };
 
     private readonly _haltCode = 99;
@@ -33,20 +40,47 @@ export default class OpcodeComputer {
         return opcodes;
     }
 
-    private computeOperation(opcodes : number[], pointer : number): { result: number, savePosition: number } {
+    private async computeOperation(opcodes : number[], pointer : number): Promise<void> {
+        
         const opcode = opcodes[pointer];
-        const operand_1_position = opcodes[pointer+1];
-        const operand_2_position = opcodes[pointer+2];
-        const savePosition = opcodes[pointer+3];
+        const operation = this._operations[opcode];
+
+        const parameters: number[] = [];
+        for (let i = 1; i <= operation.numParams; i++)
+        {
+            parameters.push(opcodes[pointer+i]);
+        }    
     
-        const operand1 = opcodes[operand_1_position];
-        const operand2 = opcodes[operand_2_position];
-    
-        return { result: this._operations[opcode].compute(operand1, operand2), savePosition };
+        return operation.compute(opcodes, ...parameters);
     }
 
-    private add(...operands: number[]) : number { return operands.reduce((total, num) => num + total)};
-    private multiply(...operands: number[]) : number { return operands.reduce((total, num) => num * total)};
+    private async add(opcodes: number[], ...parameters: number[]) : Promise<void> {
+        const operands = parameters.map(parameter => opcodes[parameter]);
+
+        const result = operands.reduce((total, num) => num + total);
+
+        opcodes[parameters[2]] = result;
+    };
+    private async multiply(opcodes: number[], ...parameters: number[]) : Promise<void> { 
+        const operands = parameters.map(parameter => opcodes[parameter]);
+
+        const result = operands.reduce((total, num) => num * total);
+
+        opcodes[parameters[2]] = result;
+
+        return Promise.resolve()
+    };
+    private async readInt(opcodes: number[], ...parameters: number[]) : Promise<void> { 
+        const input = parseInt(readline.question(">  "));
+
+        opcodes[parameters[0]] = input;
+
+        return Promise.resolve();
+    };
+    private async output(value: number) : Promise<void> { 
+        return console.log(`out: ${value}`) 
+    };
+
 }
 
 

@@ -4,9 +4,11 @@
   "description": "Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as a speed contest, interview prep, company training, university coursework, practice problems, or to challenge each other.",
   "dependencies": {
     "@types/express": "^4.17.2",
+    "@types/readline-sync": "^1.4.3",
     "@types/serve-favicon": "^2.5.0",
     "express": "^4.17.1",
     "line-reader": "^0.4.0",
+    "readline-sync": "^1.4.10",
     "serve-favicon": "^2.5.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
