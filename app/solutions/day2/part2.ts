@@ -1,6 +1,6 @@
 import lineReader from 'line-reader';
 import fs from 'fs';
-import OpcodeComputer from './opcodeComputer';
+import OpcodeComputer from '../opcodeComputer';
 
 const finalValue = 19690720;
 

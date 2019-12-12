@@ -1,6 +1,5 @@
 import fs from 'fs';
-import path from 'path';
-import linereader from 'line-reader';
+import lineReader from 'line-reader';
 
 const rootDirectory = process.cwd();
 const viewsDirectory = rootDirectory + "/app/views";
@@ -21,26 +20,21 @@ export function getHtmlView(filename : string): string {
     return fullPathName;
 }
 
-export function getFileLines(path: string): string[] {
+export async function getFileLines(path: string): Promise<string[]> {
 
     if (path === "")
         throw new Error("ArgumentException: path provided was empty.");
     if (!fs.existsSync(path))
         throw new Error(`FileNotFoundException: Could not find file ${path}`);
 
-    linereader.open(path, console.error);
-
-    const lines: string[] = [];
-
-    while (linereader.hasNextLine)
-    {
-        linereader.nextLine((error, line : string) => {
-            if (error)
-                throw error;
-
-            else lines.push(line);
+    return new Promise<string[]>(resolve => {
+        let lines: string[] = [];
+        
+        lineReader.eachLine(path, function(line : string, last? : boolean) {
+            lines.push(line);
+            
+            if (last)
+                resolve(lines);
         });
-    }
-
-    return lines;
+    });
 }

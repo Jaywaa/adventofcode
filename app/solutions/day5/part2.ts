@@ -2,7 +2,7 @@ import OpcodeComputer from "../opcodeComputer";
 import Solution from "../solution";
 import { getFileLines } from "../../api/providers/fileProvider";
 
-class Day5Part1 extends Solution {
+class Day5Part2 extends Solution {
 
     protected dayNumber = 5;
 
@@ -12,7 +12,7 @@ class Day5Part1 extends Solution {
 
         const opcodes = lines[0].split(',').map(x => parseInt(x));
         
-        var opcodeComputer = new OpcodeComputer([1]);
+        var opcodeComputer = new OpcodeComputer([5]);
 
         const resultCodes = await opcodeComputer.execute(opcodes); 
 
@@ -20,6 +20,6 @@ class Day5Part1 extends Solution {
     }
 }
 
-var solution = new Day5Part1();
+var solution = new Day5Part2();
 
 export default solution.computeAsync;
