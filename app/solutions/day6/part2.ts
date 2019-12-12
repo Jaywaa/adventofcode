@@ -2,7 +2,7 @@ import Solution from "../solution";
 import { getFileLines } from "../../api/providers/fileProvider";
 import { OrbitalObject } from "./OrbitalObject";
 
-class Day6Part1 extends Solution {
+class Day6Part2 extends Solution {
 
     protected dayNumber = 6;
 
@@ -10,7 +10,15 @@ class Day6Part1 extends Solution {
 
         const orbits = await getFileLines("app/solutions/day6/input");
 
-        const objects = this.constructOrbitalObjects(orbits);        
+        const objects = this.constructOrbitalObjects(orbits);
+
+        // create list of YOU's parents
+        // create list of SAN's parents
+        // find common parent P
+        // find distance from YOU to P, D1
+        // find distance from SAN to P, D2
+        // compute D1 + D2 = total
+        // might need to (total-2)
 
         return objects.reduce((total, x) => total + x.countObjectsInOrbit(), 0).toString();        
     }
@@ -44,6 +52,7 @@ class Day6Part1 extends Solution {
     }
 }
 
-var solution = new Day6Part1();
+var solution = new Day6Part2();
 
 export default solution.computeAsync;
+
