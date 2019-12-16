@@ -18,13 +18,18 @@ export default class OpcodeComputer {
 
     private readonly _haltCode = 99;
     private readonly _inputs: number[];
-    
-    constructor(inputs: number[] = []) {
+    private stdOut: string[] = [];
+
+    constructor(...inputs: number[]) {
         this._inputs = inputs.reverse();
     }
 
+    public readOutputs(): string[] {
+        return this.stdOut;
+    }
+
     public async execute(opcodes: number[]): Promise<number[]> {
-        console.log("Begin execution.");
+        //console.log("Begin execution.");
 
         for (let pointer = 0; pointer < opcodes.length;)
         {
@@ -32,13 +37,14 @@ export default class OpcodeComputer {
 
             if (instruction.opcode === this._haltCode)
             {
-                console.log(`Operation: ${instruction.opcode} - Program halting.`)
+                //console.log(`Operation: ${instruction.opcode} - Program halting.`)
                 return opcodes;          
             }
 
             if (!(instruction.opcode in this._operations))
                 throw `Unknown_Opcode_Exception: Unable to handle opcode ${instruction}`;
 
+            //console.log("processing instruction", instruction.opcode)
             pointer += await instruction.operation.compute(opcodes, instruction, pointer);
         }
 
@@ -90,7 +96,7 @@ export default class OpcodeComputer {
     };
     private readInt = async (opcodes: number[], instruction: IInstruction) : Promise<number> => { 
         const input = this._inputs.pop();
-        console.log("Reading next input:", input);
+        //console.log("Reading next input:", input);
         
         if (input === undefined)
             throw new Error(`No input provided for instruction. Exiting.\nInstruction: ${instruction}`);
@@ -99,8 +105,13 @@ export default class OpcodeComputer {
 
         return instruction.operation.numParams+1;
     };
-    private async output(opcodes: number[], instruction: IInstruction) : Promise<number> { 
-        console.log(`out: ${opcodes[instruction.parameters[0]]}`) 
+    private output = async (opcodes: number[], instruction: IInstruction) : Promise<number> => { 
+        const value = instruction.parameterModes[0] === 1 ? instruction.parameters[0] : opcodes[instruction.parameters[0]];
+        
+        this.stdOut.push(value.toString());
+
+        //console.log(`out: ${value}`);
+
         return instruction.operation.numParams+1;
     };
     private async noOp(opcodes: number[], instruction:IInstruction) : Promise<number> {

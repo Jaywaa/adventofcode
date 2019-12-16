@@ -14,6 +14,20 @@ export class OrbitalObject {
         this.parent = parent;
     };
 
+    public getParents = (): OrbitalObject[] => {
+        if (this.parent === undefined)
+            return [];
+
+        return [this.parent, ...this.parent.getParents()];
+    }
+
+    public distanceTo(name: string): number {
+        if (!this.parent || this.parent.name === name)
+            return 0;
+
+        return 1 + this.parent.distanceTo(name);
+    }
+
     public countObjectsInOrbit(): number {
         if (this.parent === undefined)
             return 0;

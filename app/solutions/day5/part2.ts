@@ -12,7 +12,7 @@ class Day5Part2 extends Solution {
 
         const opcodes = lines[0].split(',').map(x => parseInt(x));
         
-        var opcodeComputer = new OpcodeComputer([5]);
+        var opcodeComputer = new OpcodeComputer(5);
 
         const resultCodes = await opcodeComputer.execute(opcodes); 
 

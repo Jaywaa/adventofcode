@@ -12,15 +12,18 @@ class Day6Part2 extends Solution {
 
         const objects = this.constructOrbitalObjects(orbits);
 
-        // create list of YOU's parents
-        // create list of SAN's parents
-        // find common parent P
-        // find distance from YOU to P, D1
-        // find distance from SAN to P, D2
-        // compute D1 + D2 = total
-        // might need to (total-2)
+        const YOU = objects.find(x => x.name === "YOU") as OrbitalObject;
+        const SAN = objects.find(x => x.name === "SAN") as OrbitalObject;
 
-        return objects.reduce((total, x) => total + x.countObjectsInOrbit(), 0).toString();        
+        const youParents = YOU.getParents().map(x => x.name);
+        const sanParents = SAN.getParents().map(x => x.name);
+
+        const nearestCommonParent = youParents.filter(x=> sanParents.includes(x))[0];
+
+        const d1 = YOU.distanceTo(nearestCommonParent);
+        const d2 = SAN.distanceTo(nearestCommonParent);
+
+        return (d1 + d2).toString();        
     }
 
     constructOrbitalObjects = (orbits: string[]): OrbitalObject[] => {
